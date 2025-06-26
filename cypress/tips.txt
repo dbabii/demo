@@ -1,0 +1,17 @@
+# Find a selector 
+# Button
+	Dev tools:
+[document.querySelectorAll('button')].find(btn => btn.innerText.includes('<text>')) # search by partial match
+[document.querySelectorAll('button')].find(btn => btn.innerText === '<text>') # search by exactly match
+	Cypress:
+cy.contains('button', '<text>').click() # find the element and click on it
+====================
+# Textarea
+	Dev tools:
+document.querySelector('textarea[name="<text>"]')
+	Cypress:
+cy.get('textarea[name="<text>"]').type('<message>')
+********************
+# How to run a local web server with one page
+$ npm install serve
+$ npx serve <dir>/ # put the directory where the page is available
