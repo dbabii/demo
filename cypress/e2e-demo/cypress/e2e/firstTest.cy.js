@@ -36,4 +36,10 @@ describe('My First Test', () => {
         });
     })
 
+    //as previous test but using async/await
+    it('uses async/await with fixture data', async () => {
+        const user = await cy.fixture('user');
+        cy.visit('/commands/actions');
+        cy.get('.action-email').type(user.email);
+    })
 });
