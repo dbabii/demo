@@ -29,4 +29,11 @@ describe('My First Test', () => {
         cy.fillEmailField('test@example.com')
     })
 
+    it('fills form with fixture data', () => {
+        cy.visit('/commands/actions');
+        cy.fixture('user').then((user) => {
+            cy.get('.action-email').type(user.email);
+        });
+    })
+
 });
