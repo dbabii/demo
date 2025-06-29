@@ -9,5 +9,19 @@ describe('Mocking Network Responses', () => {
         cy.get('.network-btn').click();
 
         cy.wait('@getComment').its('response.body.name').should('eq', 'Test comment');
-        })
+        });
+
+    //POST request
+    it('Mocks a POST request', () => {
+        cy.intercept('POST', '**/comments').as('postComment');
+        cy.visit('/commands/network-requests');
+        cy.window().then((win) => {
+            win.fetch('/comments', 
+                { method: 'POST', body: JSON.stringify(
+                    { text: 'Test Post'})
+                });
+        });
+        cy.wait('@postComment').its('request.body').should('include', 'Test Post');
+    });
+
 })
