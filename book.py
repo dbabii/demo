@@ -37,3 +37,12 @@ def save_books():
                      "year": i.year})
     with open("books.json", "w") as file:
         json.dump(data, file)
+
+
+def load_books():
+    with open("books.json", "r") as f:
+        lst = json.load(f)
+
+        for i in lst:
+            i = Book(i["title"], i["author"], i["year"])
+            library.append(i)
