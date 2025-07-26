@@ -46,3 +46,42 @@ def load_books():
         for i in lst:
             i = Book(i["title"], i["author"], i["year"])
             library.append(i)
+
+
+i = 0
+menu = ["1. Add book", "2. View book", "3. Save book", "4. Load book"
+        , "5. Exit"]
+
+def print_menu():
+    for item in menu:
+        print(item)
+
+
+while True:
+    print_menu()
+    try:
+        i = int(input("Please select an option: "))
+    except ValueError:
+        print("Please enter a digital option")
+        continue
+
+    if i == 1:
+        print(menu[i-1])
+        book = add_book()
+        library.append(book)
+        print_menu()
+    elif i == 2:
+        print(menu[i-1])
+        view_books()
+        print_menu()
+    elif i == 3:
+        print(menu[i-1])
+        save_books()
+        print_menu()
+    elif i == 4:
+        print(menu[i-1])
+        load_books()
+        print_menu()
+    elif i == 5:
+        print(menu[i-1])
+        break
