@@ -1,3 +1,5 @@
+import json
+
 class Book:
     def __init__(self, title, author, year):
         self.title = title
@@ -26,3 +28,12 @@ def view_books():
     else:
         for i in library:
             i.describe()
+
+def save_books():
+    data = []
+    for i in library:
+        data.append({"title": i.title,
+                     "author": i.author,
+                     "year": i.year})
+    with open("books.json", "w") as file:
+        json.dump(data, file)
