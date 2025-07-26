@@ -10,24 +10,21 @@ files = {
 
 
 dir_path = "/home/grom/git/demo/dir"
-
 files_list = os.listdir(dir_path)
+
+# move repetable blocks under one function
+def move_file(file, dir_name):
+    old_path = os.path.join(dir_path, file)
+    new_dir = os.path.join(dir_path, dir_name)
+    new_path = os.path.join(new_dir, file)
+    os.makedirs(new_dir, exist_ok=True)
+    print(f"Moving {file} -> {dir_name}/")
+    os.rename(old_path, new_path)
+
 
 for file in files_list:
     ext = os.path.splitext(file)[1]
     if ext in files:
-        old_path = os.path.join(dir_path, file)
-        dir_name = files[ext]
-        dir_new_path = os.path.join(dir_path, dir_name)
-        new_path = os.path.join(dir_new_path, file)
-        os.makedirs(dir_new_path, exist_ok=True)
-        print(f"Moving {file} -> {dir_name}/")
-        os.rename(old_path, new_path)
+        move_file(file, files[ext])
     else:
-        old_path = os.path.join(dir_path, file)
-        dir_name = "Misc"
-        dir_new_path = os.path.join(dir_path, dir_name)
-        new_path = os.path.join(dir_new_path, file)
-        os.makedirs(dir_new_path, exist_ok=True)
-        print(f"Moving {file} -> {dir_name}/")
-        os.rename(old_path, new_path)
+        move_file(file, "Misc")
