@@ -48,13 +48,14 @@ def load_books():
             library.append(i)
 
 
-i = 0
 menu = ["1. Add book", "2. View book", "3. Save book", "4. Load book"
         , "5. Exit"]
 
 def print_menu():
+    print("\n")
     for item in menu:
         print(item)
+    print("\n")
 
 
 while True:
@@ -69,19 +70,15 @@ while True:
         print(menu[i-1])
         book = add_book()
         library.append(book)
-        print_menu()
     elif i == 2:
         print(menu[i-1])
         view_books()
-        print_menu()
     elif i == 3:
         print(menu[i-1])
         save_books()
-        print_menu()
     elif i == 4:
         print(menu[i-1])
         load_books()
-        print_menu()
     elif i == 5:
         print(menu[i-1])
         break
